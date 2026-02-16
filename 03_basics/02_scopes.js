@@ -48,7 +48,3 @@ ddTwo(5) //this is the problem is not access
 const addTwo = function(num){
     return num + 2
 }
-
-
-
-
