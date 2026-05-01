@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Events</title>
+</head>
+<body style="background-color: #414141;">
+    <h2>Amazing images</h2>
+    <div>
+        <ul id="images">
+            <li><img width="250px" id="img1" src="https://th.bing.com/th/id/OIP.0FSQZEuyU7RkfbXKOg7QUAHaEO?w=222&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt=""></li>
+            <li><img width="250px" id="img2" src="https://th.bing.com/th/id/OIP.Jkr2YUCpBVwuZ80aBIbT1AHaEK?w=266&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt=""></li>
+            <li><img width="250px" id="img3" src="https://th.bing.com/th/id/OIP.KOOipupW_5_J2Yv5CgFH6wHaEK?w=288&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3"
+                alt=""></li>
+            <li><img width="250px" id="img4" src="https://th.bing.com/th/id/OIP.4VZaY2kRL9mtllzvmSgwkwHaEK?w=288&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt=""></li>
+            <li><img width="250px" id="img5" src="https://th.bing.com/th/id/OIP.BaNC1vLv6dJ47X50L28JBwHaF7?w=222&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt=""></li>
+            <li><img width="250px" id="img6" src="https://th.bing.com/th/id/OIP.e9chh618M8QL_1ITIqt3zwHaEO?w=311&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt=""></li>
+            <li><a href="http://google.com" id="google">GOOGLE</a></li>
+        </ul>
+    </div>
+</body>
+
+<script>
+    // Events
+    // Events are actions that occur in the browser, such as a user clicking a button, hovering over an element, or submitting a form.
+    // Events can be used to trigger JavaScript code, allowing you to create interactive web pages
+    
+
+    //  Methods to handle events
+    // 1. Inline event handling: You can add an event handler directly to an HTML
+    //    element using the onclick attribute.
+    
+    
+    // document.getElementById('img3').onclick = function(){
+    //     alert("Image clicked")
+    // }
+
+      // attachEvent() is a method used in older versions of Internet Explorer (IE 8 and earlier) to 
+     // attach event handlers to elements. It is not supported in modern browsers and has been replaced by addEventListener().
+
+
+     // jQuery's on() method is a cross-browser way to attach event handlers to elements, it uses 
+     // addEventListener() in modern browsers and attachEvent() in older versions of Internet Explorer.
+
+      //type, timestamp, defaultPrevented, target, currentTarget, eventPhase, bubbles, cancelable, etc. 
+      // are properties of the event object that provide information about the event that occurred.
+      // toElement, srcElement, currentTarget
+
+      //clientX, clientY, screenX, screenY
+      // altkey, ctrlkey, shiftkey, keyCode
+
+    // document.getElementById('img3').addEventListener('click', function(e){
+    //     alert("image clicked")
+    // },false)
+
+    // false is default, it means the event will be executed in bubbling phase, if true, it will be executed in capturing phase  
+    // true means the event will be executed in capturing phase, it will be executed before the event in bubbling phase
+     
+    document.getElementById('images').addEventListener('click', function(e){
+        console.log("clicked inside the ul");
+    },false)
+
+     document.getElementById('img3').addEventListener('click', function(e){
+        console.log("image clicked");
+        e.stopPropagation(); // stop the event from bubbling up to the parent elements
+    },false)
+
+    // bubblinf phase is down to up, capturing phase is up to down, if the event is executed in bubbling phase,
+    //  it will be executed after the event in capturing phase, if the event is executed in capturing phase, it will be executed before the event in bubbling phase
+
+    // True means the event will be executed in capturing phase, it will be executed before the event in bubbling phase, false means the event will be executed in bubbling phase, it will be executed after the event in capturing phase
+    // capture phase is top to bottom, bubble phase is bottom to top, if the event is executed in capture phase, it will be executed
+    //  before the event in bubble phase, if the event is executed in bubble phase, it will be executed after the event in capture phase
+
+    document.getElementById('google').addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("google clicked");
+    },false)
+
+    document.querySelector('#images').addEventListener('click',function(e){
+        console.log(e.target.tagName);
+        if(e.target.tagName === 'IMG'){
+              console.log(e.target.id);
+              let removeIt = e.target.parentNode
+               removeIt.remove()
+                // removeIt.parentNode.removeChild(removeIt)
+        }
+       
+    })
+
+    
+</script>
+</html>
