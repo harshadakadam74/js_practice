@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello world</h1>
+    <button id="stop">Stop</button>
+</body>
+<script>
+
+    //  clearTimeout() is a method used to cancel a timeout that was previously established by calling setTimeout(). It takes the
+    //  timeout ID returned by setTimeout() as an argument and prevents the associated function from being executed.
+
+    // clearInterval() is a method used to cancel a repeating action that was previously established by calling setInterval(). It takes the
+    // interval ID returned by setInterval() as an argument and prevents the associated function from being executed repeatedly.
+
+    // setTimeout() is a method used to execute a function after a specified delay. It takes two arguments: the function to be executed and the delay in milliseconds. The function will be executed once after the specified delay.
+    // setInterval() is a method used to execute a function repeatedly at specified intervals. It takes two arguments: the function to be executed and the interval in milliseconds. The function will be executed repeatedly at the specified interval until clearInterval() is called.
+     
+    // setTimeout() and setInterval() are both used to schedule the execution of a function, but setTimeout() executes the function once after a delay, while setInterval() executes the function repeatedly at specified intervals until it is stopped.
+
+    // The main difference between setTimeout() and setInterval() is that setTimeout() executes a function once after a specified delay, while setInterval() executes a function repeatedly at specified intervals until it is stopped.
+    const sayHitesh = () => {
+        console.log("Hello Hitesh")
+    }
+
+    const changeText = function(){
+    document.querySelector('h1').innerHTML = "bast lectures "
+    }
+     
+    const changeMe = setTimeout(changeText,2000)
+
+    document.querySelector('#stop').addEventListener('click', function(){
+        clearTimeout(changeMe)
+        console.log("STOPPED");
+    })
+</script>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Stop Timer</title>
+</head>
+<body>
+
+<h1 id="output">Hello world</h1>
+<button id="start">Start</button>
+<button id="stop">Stop</button>
+
+<script>
+    let intervalId;
+
+    const sayDate = function () {
+        const time = new Date().toLocaleTimeString();
+        document.getElementById("output").innerText = time;
+    };
+
+    // Start button
+    document.getElementById("start").addEventListener("click", function () {
+        if (!intervalId) {   // prevent multiple intervals
+            intervalId = setInterval(sayDate, 1000);
+        }
+    });
+
+    // Stop button
+    document.getElementById("stop").addEventListener("click", function () {
+        clearInterval(intervalId);
+        intervalId = null;
+    });
+</script>
+
+</body>
+</html>
