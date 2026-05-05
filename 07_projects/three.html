@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Instagram Clone Advanced</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+        background: #fafafa;
+        transition: 0.3s;
+    }
+
+    body.dark {
+        background: #121212;
+        color: white;
+    }
+
+    .navbar {
+        padding: 15px;
+        text-align: center;
+        font-weight: bold;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .container {
+        max-width: 400px;
+        margin: auto;
+    }
+
+    .stories {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding: 10px;
+    }
+
+    .story img {
+        width: 60px;
+        border-radius: 50%;
+        border: 2px solid red;
+        cursor: pointer;
+    }
+
+    .post {
+        margin-top: 20px;
+        border: 1px solid #ddd;
+        background: white;
+    }
+
+    body.dark .post {
+        background: #1e1e1e;
+    }
+
+    .actions {
+        padding: 10px;
+    }
+
+    .comments {
+        padding: 10px;
+    }
+
+    .story-viewer {
+        position: fixed;
+        top:0; left:0;
+        width:100%; height:100%;
+        background:black;
+        display:none;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .story-viewer img {
+        width: 90%;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="navbar">
+📸 Instagram
+<button onclick="toggleDark()">🌙</button>
+</div>
+
+<div class="container">
+    <div class="stories" id="stories"></div>
+    <div id="posts"></div>
+</div>
+
+<!-- STORY VIEW -->
+<div class="story-viewer" id="viewer">
+    <img id="storyImg">
+</div>
+
+<script>
+const users = [
+    {name:"Rahul", img:"https://i.pravatar.cc/100?img=1"},
+    {name:"Priya", img:"https://i.pravatar.cc/100?img=2"}
+];
+
+// 🌙 Dark mode
+function toggleDark() {
+    document.body.classList.toggle("dark");
+}
+
+// 📖 Story Viewer
+function showStory(img) {
+    const viewer = document.getElementById("viewer");
+    document.getElementById("storyImg").src = img;
+    viewer.style.display = "flex";
+
+    // auto close after 3 sec
+    setTimeout(() => viewer.style.display = "none", 3000);
+}
+
+// STORIES
+const storiesDiv = document.getElementById("stories");
+users.forEach(u => {
+    const div = document.createElement("div");
+    div.className = "story";
+    div.innerHTML = `<img src="${u.img}">`;
+    div.onclick = () => showStory(u.img);
+    storiesDiv.appendChild(div);
+});
+
+// POSTS
+const postsDiv = document.getElementById("posts");
+
+users.forEach(user => {
+    let likes = 0;
+
+    const post = document.createElement("div");
+    post.className = "post";
+
+    post.innerHTML = `
+        <div>${user.name}</div>
+        <img src="https://picsum.photos/400/300?random=${Math.random()}">
+        <div class="actions">
+            <button class="likeBtn">❤️</button>
+            <span class="likeCount">0 likes</span>
+        </div>
+        <div class="comments">
+            <input placeholder="Add comment">
+            <button>Add</button>
+            <div class="commentList"></div>
+        </div>
+    `;
+
+    // ❤️ Like
+    const likeBtn = post.querySelector(".likeBtn");
+    const likeCount = post.querySelector(".likeCount");
+
+    likeBtn.onclick = () => {
+        likes++;
+        likeCount.innerText = likes + " likes";
+    };
+
+    // 💬 Comments
+    const input = post.querySelector("input");
+    const btn = post.querySelector(".comments button");
+    const list = post.querySelector(".commentList");
+
+    btn.onclick = () => {
+        if (input.value) {
+            list.innerHTML += `<p>${input.value}</p>`;
+            input.value = "";
+        }
+    };
+
+    postsDiv.appendChild(post);
+});
+</script>
+
+</body>
+</html>

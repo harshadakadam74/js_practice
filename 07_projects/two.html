@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Color Changer</title>
+
+<style>
+    body {
+        text-align: center;
+        margin-top: 100px;
+        font-family: Arial;
+        transition: background-color 0.5s;
+    }
+
+    button {
+        padding: 12px 20px;
+        margin: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #start {
+        background-color: green;
+        color: white;
+    }
+
+    #stop {
+        background-color: red;
+        color: white;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>🎨 Color Changer</h1>
+<button id="start">Start</button>
+<button id="stop">Stop</button>
+
+<script>
+    let intervalId;
+
+    function getRandomColor() {
+        const letters = "0123456789ABCDEF";
+        let color = "#";
+
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+
+        return color;
+    }
+
+    // Start color change
+    document.getElementById("start").addEventListener("click", () => {
+        if (!intervalId) {
+            intervalId = setInterval(() => {
+                document.body.style.backgroundColor = getRandomColor();
+            }, 1000);
+        }
+    });
+
+    // Stop color change
+    document.getElementById("stop").addEventListener("click", () => {
+        clearInterval(intervalId);
+        intervalId = null;
+    });
+</script>
+
+</body>
+</html>
