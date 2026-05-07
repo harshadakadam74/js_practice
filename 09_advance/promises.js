@@ -138,5 +138,28 @@ fetch('https://api.github.com/users/hiteshchoudhary')
 })
 
 
+// Fetch
+
+// The fetch function is a modern way to make network requests in JavaScript. It is built on top of promises and provides a more powerful and flexible API for making HTTP requests.
+// first argument is the URL of the resource you want to fetch, and the second argument is an optional options object that can be used to specify the method, headers, body, etc. of the request.
+// fetch is a built-in function in JavaScript that is used to make network requests. It returns a promise that resolves to the response of the request.
+//  The fetch function takes two arguments: the URL of the resource you want to fetch, and an optional options object that can be used to specify the method, headers, body, etc. of the request.
+// The fetch function is commonly used to make API calls and retrieve data from a server. It can be used with async/await or with then/catch to handle the response and any errors that may occur during the request.
+
+// Example of using fetch to get data from an API
+fetch('https://api.github.com/users/hiteshchoudhary')
+.then((response) => {
+    return response.json(); // parse the response as JSON
+})
+.then((data) => {
+    console.log(data); // log the data to the console
+})
+.catch((error) => {
+    console.error(error); // log any errors to the console
+})
+
+
+
+
  
 
