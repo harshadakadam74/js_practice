@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>Button Clicked</button>
+</body>
+<script>
+
+    //bind is used to set the value of this in a function
+    //without bind, this will refer to the button element and not the React class
+    //bind returns a new function with the value of this set to the React class
+    //
+   
+  class React {
+    constructor() {
+        this.library = "React"; //this will be undefined without bind
+        this.server = "https://localhost:3000"; //this will be undefined without bind
+
+        //requirement for bind
+        document
+        .querySelector('button')
+        .addEventListener('click', this.handleClick.bind(this)); //bind is used to set the value of this in the handleClick function to the React class
+
+    }
+        handleClick() {
+            console.log("button clicked"); //this will log the button element without bind
+            console.log(this.server); //this will log the server property of the React class with bind, but will be undefined without bind
+        }
+ }
+</script>
+</html>
