@@ -29,3 +29,5 @@ class Teacher extends User {
 const iPhone = new Teacher("iPhone", "i@gmail.com")
 console.log(iPhone.createId()); // 123, because the Teacher class extends the User class, it inherits the static method createId. Therefore, we can call Teacher.createId() to access the static method from the Teacher class. However, we cannot call iPhone.createId() because iPhone is an instance of the Teacher class and static methods are not accessible through instances of the class. They can only be called on the class itself. In this case, createId is a static method of the User class, so it should be called as User.createId() instead of iPhone.createId().
 
+// not accessible through instances of the class
+// Static methods are not accessible through instances of the class. They can only be called on the class itself. In this case, createId is a static method of the User class, so it should be called as User.createId() instead of hitesh.createId() or iPhone.createId(). Static methods are meant to be utility functions that are related to the class but do not require access to instance properties or methods. Therefore, they are not designed to be called on instances of the class.
