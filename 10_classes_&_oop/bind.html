@@ -13,7 +13,6 @@
     //bind is used to set the value of this in a function
     //without bind, this will refer to the button element and not the React class
     //bind returns a new function with the value of this set to the React class
-    //
    
   class React {
     constructor() {
@@ -31,5 +30,6 @@
             console.log(this.server); //this will log the server property of the React class with bind, but will be undefined without bind
         }
  }
+ const app = new React()
 </script>
 </html>
