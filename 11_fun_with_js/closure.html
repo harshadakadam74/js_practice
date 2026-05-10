@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: rgb(18, 17, 17);">
+    <button id="orange">Orange</button>
+    <button id="purple">Purple</button>
+</body>
+<script>
+    // Example 1
+
+    // function init(){
+    //     let name = "Modila";
+    //     function displayName(){
+    //         console.log(name);
+    //     }
+    //     displayName();
+    // }
+    // init();
+
+    // Example 2
+
+    // function outer() {
+    //     let username = "xyz"
+    //     // console.log("OUTER",secret); //undefined
+    
+    //     function inner(){
+    //         let secret = "my123"
+    //         console.log("INNER",username); //xyz
+    //     }
+        
+    //     function toInner(){
+    //         console.log("INNERTO",username); //xyz
+    //         // console.log(secret); //undefined
+            
+    //     }
+    //     inner()
+    //     toInner()
+    //     // child function can access parent variable but parent function cannot access child variable
+
+    // }
+    // outer()
+    // console.log("TWO OUTER",username);
+ 
+
+    // Lexical Scope
+    
+    //lexical scope means that in a nested group of functions, the inner functions have access to the variables and other resources of their parent scope. The inner function can also access the variables of its own scope and the global scope.
+    
+    // Example 
+
+    // function makeFunc(){
+    //     const name = "Mozilla";
+
+    //     function displayName(){
+    //         console.log(name);
+    //     }
+    //     return displayName;
+    // }
+
+    // const myFunc = makeFunc();
+    // myFunc();
+    
+</script>
+<script>
+    // document.getElementById("orange").onclick = function(){
+    //     document.body.style.backgroundColor = `orange`;   
+    // }
+
+    //  document.getElementById("purple").onclick = function(){
+    //     document.body.style.backgroundColor = `purple`;   
+    // }
+
+    function clickHandler(color){
+        // document.body.style.backgroundColor = `${color}`;
+
+        return function(){
+             document.body.style.backgroundColor = `${color}`;
+        }
+    }
+
+    document.getElementById('orange').onclick = clickHandler("orange");
+    document.getElementById('purple').onclick = clickHandler("purple");
+
+</script>
+</html>

@@ -7,7 +7,7 @@ const User = {
     },
 
     set email(value){
-        this._email = value
+        this._email = value 
     }
 }
 
